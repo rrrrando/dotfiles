@@ -17,6 +17,6 @@ set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 
 carapace _carapace | source
-atuin init fish | source
 starship init fish | source
 zoxide init fish | source
+atuin init fish | source
