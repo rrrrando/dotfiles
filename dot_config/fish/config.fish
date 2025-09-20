@@ -4,6 +4,10 @@ set fish_greeting
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 
+set -gx ATUIN_NOBIND "true"
+atuin init fish | source
+
+bind up _atuin_search
 
 #ENV VARS
 set -Ux HERD_PHP_83_INI_SCAN_DIR "$HOME/Library/Application Support/Herd/config/php/83/"
@@ -19,6 +23,4 @@ set -gx XDG_CONFIG_HOME "$HOME/.config"
 carapace _carapace | source
 starship init fish | source
 zoxide init fish | source
-atuin init fish | source
 
-bind -k up '_atuin_bind_up'
