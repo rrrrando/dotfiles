@@ -4,7 +4,6 @@ set fish_greeting
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 
-atuin init fish | source
 
 #ENV VARS
 set -Ux HERD_PHP_83_INI_SCAN_DIR "$HOME/Library/Application Support/Herd/config/php/83/"
@@ -15,8 +14,9 @@ set -gx EDITOR "nvim"
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
 set -gx XDG_CONFIG_HOME "$HOME/.config"
-carapace _carapace | source
 
+
+carapace _carapace | source
+atuin init fish | source
 starship init fish | source
-# Must be the last in the file
 zoxide init fish | source
