@@ -20,3 +20,5 @@ carapace _carapace | source
 starship init fish | source
 zoxide init fish | source
 atuin init fish | source
+
+bind -k up '_atuin_bind_up'
