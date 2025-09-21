@@ -8,6 +8,7 @@ set -gx ATUIN_NOBIND "true"
 atuin init fish | source
 
 bind up _atuin_bind_up
+bind \cr _atuin_search
 
 #ENV VARS
 set -Ux HERD_PHP_83_INI_SCAN_DIR "$HOME/Library/Application Support/Herd/config/php/83/"
