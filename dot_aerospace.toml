@@ -170,6 +170,10 @@ if.app-id = 'company.thebrowser.dia'
 run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
+if.app-id = 'org.mozilla.firefoxdeveloperedition'
+run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
 if.app-id = 'com.tinyapp.TablePlus-setapp'
 run = ['move-node-to-workspace D']
 
