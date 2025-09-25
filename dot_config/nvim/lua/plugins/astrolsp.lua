@@ -57,12 +57,13 @@ return {
       },
     })
 
+    opts.formatting.format_on_save.enabled = vim.fn.getcwd():find("/Volumes/Work/Projects/PlanPro/planpro", 1, true)
+      == nil
+
     -- Ensure both servers are installed
     opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
       ensure_installed = { "vue_ls", "vtsls", "intelephense" },
     })
-
-    -- opts.formatting.format_on_save = false
 
     return opts
   end,
