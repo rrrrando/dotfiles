@@ -2,8 +2,8 @@ return {
   "AstroNvim/astrolsp",
   opts = function(_, opts)
     -- Get the path to the vue language server plugin
-    local vue_language_server_path = vim.fn.stdpath "data"
-      .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+    local vue_language_server_path = vim.fn.stdpath("data")
+        .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
     local vue_plugin = {
       name = "@vue/typescript-plugin",
       location = vue_language_server_path,
@@ -26,9 +26,12 @@ return {
       volar = {
         on_init = function(client)
           client.handlers["tsserver/request"] = function(_, result, context)
-            local clients = vim.lsp.get_clients { bufnr = context.bufnr, name = "vtsls" }
+            local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "vtsls" })
             if #clients == 0 then
-              vim.notify("Could not find `vtsls` lsp client, `vue_ls` would not work without it.", vim.log.levels.ERROR)
+              vim.notify(
+                "Could not find `vtsls` lsp client, `vue_ls` would not work without it.",
+                vim.log.levels.ERROR
+              )
               return
             end
             local ts_client = clients[1]
@@ -56,9 +59,6 @@ return {
         },
       },
     })
-
-    opts.formatting.format_on_save.enabled = vim.fn.getcwd():find("/Volumes/Work/Projects/PlanPro/planpro", 1, true)
-      == nil
 
     -- Ensure both servers are installed
     opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
