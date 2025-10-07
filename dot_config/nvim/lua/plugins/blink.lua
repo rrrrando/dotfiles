@@ -6,10 +6,11 @@ return {
 	specs = {
 		{ "Saghen/blink.compat", version = "*", lazy = true, opts = {} },
 	},
+	---@module 'blink.cmp'
+	---@type blink.cmp.Config
 	opts = {
-		keymap = {
-			preset = "enter",
-		},
+		keymap = { preset = "default" },
+		completion = { list = { selection = { preselect = true, auto_insert = true } } },
 		sources = {
 			-- remember to enable your providers here
 			default = { "laravel", "lsp", "path", "snippets", "buffer" },
