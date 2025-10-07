@@ -1,6 +1,6 @@
 return {
   {
-    "saghen/blink.cmp",
+    "Saghen/blink.cmp",
     dependencies = {
       { "adalessa/laravel.nvim" },
     },
