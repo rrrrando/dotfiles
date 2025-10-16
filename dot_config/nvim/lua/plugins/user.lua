@@ -3,7 +3,16 @@ return {
   -- customize dashboard options
   {
     "folke/snacks.nvim",
+    ---@type snacks.Config
     opts = {
+      picker = {
+        matcher = {
+          frecency = true,
+        },
+        sort = {
+          fields = { "score:desc", "#text", "idx" },
+        },
+      },
       scroll = {},
       dashboard = {
         preset = {
