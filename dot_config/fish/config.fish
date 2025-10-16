@@ -20,7 +20,7 @@ set -gx HOMEBREW_NO_ENV_HINTS 1
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
-
+carapace _carapace | source
 starship init fish | source
 zoxide init fish | source
 
