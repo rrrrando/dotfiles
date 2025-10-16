@@ -19,7 +19,6 @@ set -gx EDITOR "nvim"
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
-carapace _carapace | source
 starship init fish | source
 zoxide init fish | source
 
