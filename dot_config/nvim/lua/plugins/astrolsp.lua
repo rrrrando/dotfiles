@@ -60,6 +60,12 @@ return {
       },
     })
 
+    opts.formatting = {
+      disabled = {
+        "intelephense",
+      },
+    }
+
     -- Ensure both servers are installed
     opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
       ensure_installed = { "vue_ls", "vtsls", "intelephense" },
