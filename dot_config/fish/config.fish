@@ -17,7 +17,6 @@ set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
 set -gx EDITOR "nvim"
 set -gx HOMEBREW_NO_ENV_HINTS 1
-set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 carapace _carapace | source
