@@ -161,7 +161,7 @@ run = 'move-node-to-workspace G'
 if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace T'
 
-[[on-windows-detected]]
+[[on-window-detected]]
 if.app-id = 'com.jetbrains.PhpStorm'
 run = 'move-node-to-workspace P'
 
