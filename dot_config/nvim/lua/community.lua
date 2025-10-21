@@ -15,7 +15,6 @@ return {
 	{ import = "astrocommunity.bars-and-lines.wakastat" },
 	{ import = "astrocommunity.color.twilight-nvim" },
 	{ import = "astrocommunity.recipes.picker-lsp-mappings" },
-	{ import = "astrocommunity.git.octo-nvim" },
 	{ import = "astrocommunity.ai.opencode-nvim" },
 	-- import/override with your plugins folder
 }
