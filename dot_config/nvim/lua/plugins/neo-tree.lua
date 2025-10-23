@@ -1,10 +1,5 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	branch = "v3.x",
-	dependencies = {
-		-- Others dependencies
-		"saifulapm/neotree-file-nesting-config", -- add plugin as dependency. no need any other config or setup call
-	},
 	opts = {
 		hide_root_node = true,
 		retain_hidden_root_indent = true,
@@ -37,9 +32,4 @@ return {
 			width = 60,
 		},
 	},
-	config = function(_, opts)
-		-- Adding rules from plugin
-		opts.nesting_rules = require("neotree-file-nesting-config").nesting_rules
-		require("neo-tree").setup(opts)
-	end,
 }
