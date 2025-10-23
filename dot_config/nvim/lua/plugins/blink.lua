@@ -15,6 +15,12 @@ return {
 			-- remember to enable your providers here
 			default = { "laravel", "lsp", "path", "snippets", "buffer" },
 			providers = {
+				lsp = {
+					score_offset = 100,
+				},
+				snippets = {
+					score_offset = -10,
+				},
 				laravel = {
 					name = "laravel",
 					module = "blink.compat.source",
