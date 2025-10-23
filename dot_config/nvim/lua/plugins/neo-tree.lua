@@ -1,14 +1,12 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	opts = {
-		hide_root_node = true,
-		retain_hidden_root_indent = true,
 		filesystem = {
 			filtered_items = {
 				visible = true,
 				show_hidden_count = true,
 				hide_dotfiles = false,
-				hide_gitignored = false,
+				hide_gitignored = true,
 				hide_by_name = {
 					".git",
 					".DS_Store",
@@ -18,13 +16,6 @@ return {
 				never_show_by_pattern = { -- uses glob style patterns
 					".null-ls_*",
 				},
-			},
-		},
-		default_component_configs = {
-			indent = {
-				with_expanders = true,
-				expander_collapsed = "",
-				expander_expanded = "",
 			},
 		},
 		window = {
