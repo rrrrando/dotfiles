@@ -1,44 +1,45 @@
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  dependencies = {
-    -- Others dependencies
-    "saifulapm/neotree-file-nesting-config", -- add plugin as dependency. no need any other config or setup call
-  },
-  opts = {
-    hide_root_node = true,
-    retain_hidden_root_indent = true,
-    filesystem = {
-      filtered_items = {
-        visible = true,
-        show_hidden_count = true,
-        hide_dotfiles = false,
-        hide_gitignored = false,
-        hide_by_name = {
-          ".git",
-          ".DS_Store",
-          "node_modules",
-        },
-        never_show = {},
-        never_show_by_pattern = { -- uses glob style patterns
-          ".null-ls_*",
-        },
-      },
-    },
-    default_component_configs = {
-      indent = {
-        with_expanders = true,
-        expander_collapsed = "",
-        expander_expanded = "",
-      },
-    },
-    window = {
-      position = "left",
-      width = 60,
-    },
-  },
-  config = function(_, opts)
-    -- Adding rules from plugin
-    opts.nesting_rules = require("neotree-file-nesting-config").nesting_rules
-    require("neo-tree").setup(opts)
-  end,
+	"nvim-neo-tree/neo-tree.nvim",
+	branch = "v3.x",
+	dependencies = {
+		-- Others dependencies
+		"saifulapm/neotree-file-nesting-config", -- add plugin as dependency. no need any other config or setup call
+	},
+	opts = {
+		hide_root_node = true,
+		retain_hidden_root_indent = true,
+		filesystem = {
+			filtered_items = {
+				visible = true,
+				show_hidden_count = true,
+				hide_dotfiles = false,
+				hide_gitignored = false,
+				hide_by_name = {
+					".git",
+					".DS_Store",
+					"node_modules",
+				},
+				never_show = {},
+				never_show_by_pattern = { -- uses glob style patterns
+					".null-ls_*",
+				},
+			},
+		},
+		default_component_configs = {
+			indent = {
+				with_expanders = true,
+				expander_collapsed = "",
+				expander_expanded = "",
+			},
+		},
+		window = {
+			position = "left",
+			width = 60,
+		},
+	},
+	config = function(_, opts)
+		-- Adding rules from plugin
+		opts.nesting_rules = require("neotree-file-nesting-config").nesting_rules
+		require("neo-tree").setup(opts)
+	end,
 }
