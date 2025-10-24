@@ -10,7 +10,7 @@ return {
 				hide_by_name = {
 					".git",
 					".DS_Store",
-					"node_modules",
+					"node_modules/",
 				},
 				never_show = {},
 				never_show_by_pattern = { -- uses glob style patterns
