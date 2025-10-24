@@ -3,13 +3,14 @@ return {
 	opts = {
 		filesystem = {
 			filtered_items = {
-				visible = true,
-				hide_dotfiles = true,
+				visible = false,
+				hide_dotfiles = false,
 				hide_gitignored = true,
+				hide_ignored = true,
 				hide_by_name = {
 					".git",
 					".DS_Store",
-					"node_modules/",
+					"node_modules",
 				},
 				always_show_by_pattern = {
 					".env*",
@@ -22,7 +23,7 @@ return {
 		},
 		window = {
 			position = "left",
-			width = 60,
+			width = 50,
 		},
 	},
 }
