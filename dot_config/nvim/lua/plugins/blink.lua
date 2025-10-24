@@ -19,12 +19,12 @@ return {
 					score_offset = 100,
 				},
 				snippets = {
-					score_offset = -10,
+					score_offset = 95,
 				},
 				laravel = {
 					name = "laravel",
 					module = "blink.compat.source",
-					score_offset = 95, -- show at a higher priority than lsp
+					score_offset = 90, -- show at a higher priority than lsp
 				},
 			},
 		},
