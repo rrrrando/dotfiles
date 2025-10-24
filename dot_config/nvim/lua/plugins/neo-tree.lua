@@ -4,16 +4,18 @@ return {
 		filesystem = {
 			filtered_items = {
 				visible = true,
-				show_hidden_count = true,
-				hide_dotfiles = false,
+				hide_dotfiles = true,
 				hide_gitignored = true,
 				hide_by_name = {
 					".git",
-					--".DS_Store",
-					--"node_modules/",
+					".DS_Store",
+					"node_modules/",
+				},
+				always_show_by_pattern = {
+					".env*",
 				},
 				never_show = {},
-				never_show_by_pattern = { -- uses glob style patterns
+				never_show_by_pattern = {
 					".null-ls_*",
 				},
 			},
