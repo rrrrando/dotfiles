@@ -8,9 +8,9 @@ return {
 				hide_dotfiles = false,
 				hide_gitignored = true,
 				hide_by_name = {
-					".git",
-					".DS_Store",
-					"node_modules/",
+					--".git",
+					--".DS_Store",
+					--"node_modules/",
 				},
 				never_show = {},
 				never_show_by_pattern = { -- uses glob style patterns
