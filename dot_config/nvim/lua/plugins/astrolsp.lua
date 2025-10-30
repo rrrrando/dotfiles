@@ -18,13 +18,6 @@ return {
 							vue_plugin,
 						},
 					},
-					on_attach = function(client)
-						if vim.bo.filetype == "vue" then
-							client.existing_capabilities.semanticTokensProvider.full = false
-						else
-							client.existing_capabilities.semanticTokensProvider.full = true
-						end
-					end,
 				},
 			},
 			filetypes = tsserver_filetypes,
