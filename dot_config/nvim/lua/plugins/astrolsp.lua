@@ -60,7 +60,7 @@ return {
 
     opts.config = vim.tbl_deep_extend("force", opts.config or {}, {
       ts_ls = ts_ls_config,
-      vue_ls = vue_ls_config,
+      volar = vue_ls_config,
 
       intelephense = {
         settings = {
