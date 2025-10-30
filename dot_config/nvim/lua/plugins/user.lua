@@ -14,6 +14,7 @@ return {
         },
       },
       scroll = {},
+      terminal = {},
       dashboard = {
         preset = {
           header = table.concat({
