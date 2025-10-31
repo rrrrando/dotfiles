@@ -11,24 +11,20 @@ return {
 		}
 		local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
 
-		local ts_ls_config = {
-			init_options = {
-				plugins = {
-					vue_plugin,
+		local vtsls_config = {
+			settings = {
+				vtsls = {
+					tsserver = {
+						globalPlugins = {
+							vue_plugin,
+						},
+					},
 				},
 			},
 			filetypes = tsserver_filetypes,
 		}
 
 		local vue_ls_config = {
-			settings = {
-				volar = {
-					completion = {
-						autoImportComponents = true,
-						preferTypeOnAutoImport = true,
-					},
-				},
-			},
 			on_init = function(client)
 				client.handlers["tsserver/request"] = function(_, result, context)
 					local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "ts_ls" })
@@ -63,7 +59,7 @@ return {
 		}
 
 		opts.config = vim.tbl_deep_extend("force", opts.config or {}, {
-			ts_ls = ts_ls_config,
+			vtsls = vtsls_config,
 			volar = vue_ls_config,
 
 			intelephense = {
@@ -86,7 +82,7 @@ return {
 
 		-- Ensure servers are installed
 		opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
-			ensure_installed = { "vue_ls", "vtsls", "ts_ls", "intelephense" },
+			ensure_installed = { "vue_ls", "vtsls", "intelephense" },
 		})
 
 		return opts
