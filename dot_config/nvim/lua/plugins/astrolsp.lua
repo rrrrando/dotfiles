@@ -10,21 +10,17 @@ return {
 			configNamespace = "typescript",
 		}
 		local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
-		local vtsls_config = {
-			settings = {
-				vtsls = {
-					experimental = {
-						completion = {
-							enableServerSideFuzzyMatch = true,
-							entriesLimit = 200,
-						},
-					},
-					tsserver = {
-						globalPlugins = {
-							vue_plugin,
-						},
-					},
+		local volar_config = {
+			init_options = {
+				vue = {
+					hybridMode = false, -- DISABLE hybrid mode
 				},
+				typescript = {
+					tsdk = vim.fn.stdpath("data")
+							.. "/mason/packages/typescript-language-server/node_modules/typescript/lib",
+				},
+			},
+			settings = {
 				typescript = {
 					suggest = {
 						includeCompletionsForModuleExports = true,
@@ -115,9 +111,8 @@ return {
 		}
 
 		opts.config = vim.tbl_deep_extend("force", opts.config or {}, {
-			vtsls = vtsls_config,
 			ts_ls = ts_ls_config,
-			volar = vue_ls_config,
+			volar = volar_config,
 
 			intelephense = {
 				settings = {
