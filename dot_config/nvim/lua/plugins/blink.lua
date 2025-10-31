@@ -17,7 +17,7 @@ return {
 			providers = {
 				lsp = {
 					score_offset = 100,
-					async = true,
+					async = false,
 					timeout_ms = 5000,
 				},
 				snippets = {
