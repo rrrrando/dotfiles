@@ -10,67 +10,11 @@ return {
 			configNamespace = "typescript",
 		}
 		local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
-		local volar_config = {
-			init_options = {
-				vue = {
-					hybridMode = false, -- DISABLE hybrid mode
-				},
-				typescript = {
-					tsdk = vim.fn.stdpath("data")
-							.. "/mason/packages/typescript-language-server/node_modules/typescript/lib",
-				},
-			},
-			settings = {
-				typescript = {
-					suggest = {
-						includeCompletionsForModuleExports = true,
-						includeAutomaticOptionalChainCompletions = true,
-					},
-					preferences = {
-						includePackageJsonAutoImports = "on",
-						importModuleSpecifierPreference = "relative",
-					},
-				},
-				javascript = {
-					suggest = {
-						includeCompletionsForModuleExports = true,
-						includeAutomaticOptionalChainCompletions = true,
-					},
-					preferences = {
-						includePackageJsonAutoImports = "on",
-						importModuleSpecifierPreference = "relative",
-					},
-				},
-			},
-			filetypes = tsserver_filetypes,
-		}
 
 		local ts_ls_config = {
 			init_options = {
 				plugins = {
 					vue_plugin,
-				},
-			},
-			settings = {
-				typescript = {
-					suggest = {
-						includeCompletionsForModuleExports = true,
-						includeAutomaticOptionalChainCompletions = true,
-					},
-					preferences = {
-						includePackageJsonAutoImports = "on",
-						importModuleSpecifierPreference = "relative",
-					},
-				},
-				javascript = {
-					suggest = {
-						includeCompletionsForModuleExports = true,
-						includeAutomaticOptionalChainCompletions = true,
-					},
-					preferences = {
-						includePackageJsonAutoImports = "on",
-						importModuleSpecifierPreference = "relative",
-					},
 				},
 			},
 			filetypes = tsserver_filetypes,
@@ -112,7 +56,7 @@ return {
 
 		opts.config = vim.tbl_deep_extend("force", opts.config or {}, {
 			ts_ls = ts_ls_config,
-			volar = volar_config,
+			volar = vue_ls_config,
 
 			intelephense = {
 				settings = {
