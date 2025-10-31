@@ -16,7 +16,7 @@ return {
 					experimental = {
 						completion = {
 							enableServerSideFuzzyMatch = true,
-							entriesLimit = 50,
+							entriesLimit = 200,
 						},
 					},
 					tsserver = {
@@ -49,14 +49,45 @@ return {
 			filetypes = tsserver_filetypes,
 		}
 
+		local ts_ls_config = {
+			init_options = {
+				plugins = {
+					vue_plugin,
+				},
+			},
+			settings = {
+				typescript = {
+					suggest = {
+						includeCompletionsForModuleExports = true,
+						includeAutomaticOptionalChainCompletions = true,
+					},
+					preferences = {
+						includePackageJsonAutoImports = "on",
+						importModuleSpecifierPreference = "relative",
+					},
+				},
+				javascript = {
+					suggest = {
+						includeCompletionsForModuleExports = true,
+						includeAutomaticOptionalChainCompletions = true,
+					},
+					preferences = {
+						includePackageJsonAutoImports = "on",
+						importModuleSpecifierPreference = "relative",
+					},
+				},
+			},
+			filetypes = tsserver_filetypes,
+		}
+
 		local vue_ls_config = {
 			on_init = function(client)
 				client.handlers["tsserver/request"] = function(_, result, context)
-					local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "vtsls" })
+					local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "ts_ls" })
 
 					if #clients == 0 then
 						vim.notify(
-							"Could not find `vtsls` lsp client, `vue_ls` would not work without it.",
+							"Could not find `ts_ls` lsp client, `vue_ls` would not work without it.",
 							vim.log.levels.ERROR
 						)
 						return
@@ -85,6 +116,7 @@ return {
 
 		opts.config = vim.tbl_deep_extend("force", opts.config or {}, {
 			vtsls = vtsls_config,
+			ts_ls = ts_ls_config,
 			volar = vue_ls_config,
 
 			intelephense = {
@@ -107,7 +139,7 @@ return {
 
 		-- Ensure servers are installed
 		opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
-			ensure_installed = { "vue_ls", "vtsls", "intelephense" },
+			ensure_installed = { "vue_ls", "vtsls", "ts_ls", "intelephense" },
 		})
 
 		return opts
