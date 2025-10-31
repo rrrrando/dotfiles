@@ -2,7 +2,7 @@ return {
 	"AstroNvim/astrolsp",
 	opts = function(_, opts)
 		local vue_language_server_path = vim.fn.stdpath("data")
-				.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 		local vue_plugin = {
 			name = "@vue/typescript-plugin",
 			location = vue_language_server_path,
@@ -13,6 +13,13 @@ return {
 		local vtsls_config = {
 			settings = {
 				vtsls = {
+					autoUseWorkspaceTsdk = true,
+					experimental = {
+						completion = {
+							enableServerSideFuzzyMatch = true,
+							entriesLimit = 50,
+						},
+					},
 					tsserver = {
 						globalPlugins = {
 							vue_plugin,
@@ -40,7 +47,7 @@ return {
 					local param = unpack(result)
 					local id, command, payload = unpack(param)
 					ts_client:exec_cmd({
-						title = "vue_request_forward", -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
+						title = "vue_request_forward",
 						command = "typescript.tsserverRequest",
 						arguments = {
 							command,
@@ -48,8 +55,6 @@ return {
 						},
 					}, { bufnr = context.bufnr }, function(_, r)
 						local response = r and r.body
-						-- TODO: handle error or response nil here, e.g. logging
-						-- NOTE: Do NOT return if there's an error or no response, just return nil back to the vue_ls to prevent memory leak
 						local response_data = { { id, response } }
 
 						---@diagnostic disable-next-line: param-type-mismatch
