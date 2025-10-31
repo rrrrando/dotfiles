@@ -21,6 +21,22 @@ return {
 		}
 
 		local vue_ls_config = {
+			settings = {
+				volar = {
+					codeLens = {
+						references = true,
+						pugTools = false,
+						scriptSetupTools = true,
+					},
+					completion = {
+						autoImportComponentsFromPackage = true,
+						preferTypeOnAutoImport = true,
+					},
+					template = {
+						interpolationCompletions = true,
+					},
+				},
+			},
 			on_init = function(client)
 				client.handlers["tsserver/request"] = function(_, result, context)
 					local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "ts_ls" })
