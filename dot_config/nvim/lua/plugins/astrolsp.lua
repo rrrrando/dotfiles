@@ -13,7 +13,6 @@ return {
 		local vtsls_config = {
 			settings = {
 				vtsls = {
-					autoUseWorkspaceTsdk = true,
 					experimental = {
 						completion = {
 							enableServerSideFuzzyMatch = true,
