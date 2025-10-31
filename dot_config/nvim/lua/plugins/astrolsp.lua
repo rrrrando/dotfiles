@@ -23,17 +23,9 @@ return {
 		local vue_ls_config = {
 			settings = {
 				volar = {
-					codeLens = {
-						references = true,
-						pugTools = false,
-						scriptSetupTools = true,
-					},
 					completion = {
-						autoImportComponentsFromPackage = true,
+						autoImportComponents = true,
 						preferTypeOnAutoImport = true,
-					},
-					template = {
-						interpolationCompletions = true,
 					},
 				},
 			},
