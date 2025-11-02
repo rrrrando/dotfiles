@@ -2,12 +2,6 @@ return {
 	{
 		"AstroNvim/astrocore",
 		---@param opts AstroCoreOpts
-		opts = {
-			options = {
-				opt = {
-					showtabline = 1,
-				},
-			},
-		},
+		opts = {},
 	},
 }
