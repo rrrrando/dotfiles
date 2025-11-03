@@ -6,6 +6,7 @@ return {
 		---@type snacks.Config
 		opts = {
 			gh = {},
+			image = {},
 			picker = {
 				matcher = {
 					frecency = true,
