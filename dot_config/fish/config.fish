@@ -1,9 +1,5 @@
 set fish_greeting
 
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-# source ~/.orbstack/shell/init2.fish 2>/dev/null || :
-
 set -gx ATUIN_NOBIND "true"
 atuin init fish | source
 
@@ -21,4 +17,5 @@ set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 starship init fish | source
 zoxide init fish | source
+mise activate fish | source
 
