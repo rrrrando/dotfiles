@@ -7,8 +7,6 @@ bind up _atuin_bind_up
 bind \cr _atuin_search
 
 #ENV VARS
-set -Ux HERD_PHP_83_INI_SCAN_DIR "$HOME/Library/Application Support/Herd/config/php/83/"
-set -Ux HERD_PHP_84_INI_SCAN_DIR "$HOME/Library/Application Support/Herd/config/php/84/"
 set -gx EDITOR "nvim"
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx XDG_CONFIG_HOME "$HOME/.config"
