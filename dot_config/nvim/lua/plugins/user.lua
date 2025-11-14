@@ -7,6 +7,7 @@ return {
 		opts = {
 			gh = {},
 			image = {},
+			scratch = {},
 			picker = {
 				matcher = {
 					frecency = true,
