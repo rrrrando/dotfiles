@@ -126,6 +126,8 @@ return {
 					noremap = false,
 					expr = true,
 				},
+				["<Leader>."] = {function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" }},
+				["<Leader>bS"] = {function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" }},
 				-- setting a mapping to false will disable it
 				-- ["<C-S>"] = false,
 			},
