@@ -16,15 +16,15 @@ return {
 			default = { "laravel", "lsp", "path", "snippets", "buffer" },
 			providers = {
 				lsp = {
-					score_offset = 100,
+					score_offset = 95,
 				},
 				snippets = {
-					score_offset = 95,
+					score_offset = 50,
 				},
 				laravel = {
 					name = "laravel",
 					module = "blink.compat.source",
-					score_offset = 90, -- show at a higher priority than lsp
+					score_offset = 100,
 				},
 			},
 		},
