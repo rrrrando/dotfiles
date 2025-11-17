@@ -6,6 +6,9 @@ return {
 		opts = {
 			aggressive_mode = true,
 			notifications = true,
+			excluded_lsp_clients = {
+				"intelephense",
+			},
 		},
 	},
 }
