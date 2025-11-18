@@ -9,18 +9,9 @@ return {
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
-		keymap = { preset = "enter" },
-		completion = { list = { selection = { preselect = true, auto_insert = true } } },
 		sources = {
-			-- remember to enable your providers here
 			default = { "laravel", "lsp", "path", "snippets", "buffer" },
 			providers = {
-				lsp = {
-					score_offset = 95,
-				},
-				snippets = {
-					score_offset = 50,
-				},
 				laravel = {
 					name = "laravel",
 					module = "blink.compat.source",
