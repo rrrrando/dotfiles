@@ -17,6 +17,7 @@ return {
 	{ import = "astrocommunity.recipes.picker-lsp-mappings" },
 	{ import = "astrocommunity.ai.opencode-nvim" },
 	{ import = "astrocommunity.editing-support.auto-save-nvim" },
+	{ import = "astrocommunity.markdown-and-latex.markview-nvim" },
 	{ import = "astrocommunity.editing-support.nvim-treesitter-context" },
 	-- import/override with your plugins folder
 }
