@@ -95,7 +95,7 @@ return {
 					end,
 					desc = "GitHub Issues (all)",
 				},
-				["<leader>gpr"] = {
+				["<leader>gp"] = {
 					function()
 						Snacks.picker.gh_pr()
 					end,
