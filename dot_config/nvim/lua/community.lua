@@ -18,5 +18,7 @@ return {
 	{ import = "astrocommunity.editing-support.auto-save-nvim" },
 	{ import = "astrocommunity.markdown-and-latex.markview-nvim" },
 	{ import = "astrocommunity.editing-support.nvim-treesitter-context" },
+	{ import = "astrocommunity.recipes.ai" },
+	{ import = "astrocommunity.completion.copilot-lua" },
 	-- import/override with your plugins folder
 }
