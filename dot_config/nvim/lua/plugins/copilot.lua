@@ -5,20 +5,14 @@ return {
   event = "BufReadPost",
   dependencies = {
     "copilotlsp-nvim/copilot-lsp",
-    init = function() vim.g.copilot_nes_debounce = 500 end,
+    init = function()
+      vim.g.copilot_nes_debounce = 500
+    end,
   },
   opts = {
     suggestion = {
       keymap = {
         accept = false, -- handled by completion engine
-      },
-    },
-    nes = {
-      enabled = true, -- requires copilot-lsp as a dependency
-      keymap = {
-        accept_and_goto = "<leader>p",
-        accept = false,
-        dismiss = "<Esc>",
       },
     },
   },

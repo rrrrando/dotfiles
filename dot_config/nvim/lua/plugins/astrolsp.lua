@@ -77,6 +77,8 @@ return {
 		opts.formatting = {
 			disabled = {
 				"intelephense",
+				"vtsls",
+				"volar",
 			},
 		}
 
