@@ -65,9 +65,12 @@ return {
 			intelephense = {
 				settings = {
 					intelephense = {
+						files = {
+							maxSize = 2000000,
+						},
 						single_file_support = true,
 						completion = {
-							maxItems = 200,
+							maxItems = 400,
 						},
 					},
 				},
@@ -86,6 +89,8 @@ return {
 		opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
 			ensure_installed = { "vue_ls", "vtsls", "intelephense" },
 		})
+
+		opts.features.inlay_hints = true
 
 		return opts
 	end,

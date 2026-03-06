@@ -41,6 +41,18 @@ return {
                 return true
               end
             end,
+            ai_reject = function()
+              if require("copilot.suggestion").is_visible() then
+                require("copilot.suggestion").dismiss()
+                return true
+              end
+            end,
+            ai_accept_word = function()
+              if require("copilot.suggestion").is_visible() then
+                require("copilot.suggestion").accept_word()
+                return true
+              end
+            end,
           },
         },
       },

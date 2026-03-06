@@ -26,5 +26,21 @@ return {
 			"fallback",
 		}
 		opts.keymap["<S-Tab>"] = { "fallback" }
+		opts.keymap["<C-e>"] = {
+			function()
+				if vim.g.ai_reject then
+					return vim.g.ai_reject()
+				end
+			end,
+			"fallback",
+		}
+		opts.keymap["<C-w>"] = {
+			function()
+				if vim.g.ai_accept_word then
+					return vim.g.ai_accept_word()
+				end
+			end,
+			"fallback",
+		}
 	end,
 }
