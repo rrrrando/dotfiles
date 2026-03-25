@@ -75,6 +75,12 @@ return {
 					},
 				},
 			},
+
+			laravel_ls = {
+				cmd = { "laravel-ls" },
+				filetypes = { "php", "blade" },
+				root_dir = require("lspconfig.util").root_pattern("artisan"),
+			},
 		})
 
 		opts.formatting = {
@@ -87,8 +93,9 @@ return {
 
 		-- Ensure servers are installed
 		opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
-			ensure_installed = { "vue_ls", "vtsls", "intelephense" },
+			ensure_installed = { "vue_ls", "vtsls", "intelephense", "laravel-ls" },
 		})
+		opts.servers = vim.list_extend(opts.servers or {}, { "laravel_ls" })
 
 		opts.features.inlay_hints = true
 
