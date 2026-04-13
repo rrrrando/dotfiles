@@ -1,104 +1,119 @@
+-- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
+-- Configuration documentation can be found with `:h astrolsp`
+-- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
+--       as this provides autocomplete and documentation while editing
+
+---@type LazySpec
 return {
-	"AstroNvim/astrolsp",
-	opts = function(_, opts)
-		local vue_language_server_path = vim.fn.stdpath("data")
-				.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
-		local vue_plugin = {
-			name = "@vue/typescript-plugin",
-			location = vue_language_server_path,
-			languages = { "vue" },
-			configNamespace = "typescript",
-		}
-		local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    -- Configuration table of features provided by AstroLSP
+    features = {
+      codelens = true, -- enable/disable codelens refresh on start
+      inlay_hints = true, -- enable/disable inlay hints on start
+      semantic_tokens = true, -- enable/disable semantic token highlighting
+    },
+    -- customize lsp formatting options
+    formatting = {
+      -- control auto formatting on save
+      format_on_save = {
+        enabled = true, -- enable or disable format on save globally
+        allow_filetypes = { -- enable format on save for specified filetypes only
+          -- "go",
+        },
+        ignore_filetypes = { -- disable format on save for specified filetypes
+          -- "python",
+        },
+      },
+      disabled = { -- disable formatting capabilities for the listed language servers
+        -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
+        -- "lua_ls",
+      },
+      timeout_ms = 1000, -- default format timeout
+      -- filter = function(client) -- fully override the default formatting function
+      --   return true
+      -- end
+    },
+    -- enable servers that you already have installed without mason
+    servers = {
+      "vtsls",
+      "vue_ls",
+    },
+    -- customize language server configuration passed to `vim.lsp.config`
+    -- client specific configuration can also go in `lsp/` in your configuration root (see `:h lsp-config`)
+    config = {
+      vtsls = {
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server",
+                  languages = { "vue" },
+                  configNamespace = "typescript",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    -- customize how language servers are attached
+    handlers = {
+      -- a function with the key `*` modifies the default handler, functions takes the server name as the parameter
+      -- ["*"] = function(server) vim.lsp.enable(server) end
 
-		local vtsls_config = {
-			settings = {
-				vtsls = {
-					tsserver = {
-						globalPlugins = {
-							vue_plugin,
-						},
-					},
-				},
-			},
-			filetypes = tsserver_filetypes,
-		}
-
-		local vue_ls_config = {
-			on_init = function(client)
-				client.handlers["tsserver/request"] = function(_, result, context)
-					local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "vtsls" })
-
-					if #clients == 0 then
-						vim.notify(
-							"Could not find `vtsls` lsp client, `vue_ls` would not work without it.",
-							vim.log.levels.ERROR
-						)
-						return
-					end
-					local ts_client = clients[1]
-
-					local param = unpack(result)
-					local id, command, payload = unpack(param)
-					ts_client:exec_cmd({
-						title = "vue_request_forward",
-						command = "typescript.tsserverRequest",
-						arguments = {
-							command,
-							payload,
-						},
-					}, { bufnr = context.bufnr }, function(_, r)
-						local response = r and r.body
-						local response_data = { { id, response } }
-
-						---@diagnostic disable-next-line: param-type-mismatch
-						client:notify("tsserver/response", response_data)
-					end)
-				end
-			end,
-		}
-
-		opts.config = vim.tbl_deep_extend("force", opts.config or {}, {
-			vtsls = vtsls_config,
-			volar = vue_ls_config,
-
-			intelephense = {
-				settings = {
-					intelephense = {
-						files = {
-							maxSize = 2000000,
-						},
-						single_file_support = true,
-						completion = {
-							maxItems = 400,
-						},
-					},
-				},
-			},
-
-			laravel_ls = {
-				cmd = { "laravel-ls" },
-				filetypes = { "php", "blade" },
-				root_dir = require("lspconfig.util").root_pattern("artisan"),
-			},
-		})
-
-		opts.formatting = {
-			disabled = {
-				"intelephense",
-				"vtsls",
-				"volar",
-			},
-		}
-
-		-- Ensure servers are installed
-		opts.mason_lspconfig = vim.tbl_deep_extend("force", opts.mason_lspconfig or {}, {
-			ensure_installed = { "vue_ls", "vtsls", "intelephense", "laravel-ls" },
-		})
-		opts.servers = vim.list_extend(opts.servers or {}, { "laravel_ls" })
-
-		opts.features.inlay_hints = true
-
-		return opts
-	end,
+      -- the key is the server that is being setup with `vim.lsp.config`
+      -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
+    },
+    -- Configure buffer local auto commands to add when attaching a language server
+    autocmds = {
+      -- first key is the `augroup` to add the auto commands to (:h augroup)
+      lsp_codelens_refresh = {
+        -- Optional condition to create/delete auto command group
+        -- can either be a string of a client capability or a function of `fun(client, bufnr): boolean`
+        -- condition will be resolved for each client on each execution and if it ever fails for all clients,
+        -- the auto commands will be deleted for that buffer
+        cond = "textDocument/codeLens",
+        -- cond = function(client, bufnr) return client.name == "lua_ls" end,
+        -- list of auto commands to set
+        {
+          -- events to trigger
+          event = { "InsertLeave", "BufEnter" },
+          -- the rest of the autocmd options (:h nvim_create_autocmd)
+          desc = "Refresh codelens (buffer)",
+          callback = function(args)
+            if require("astrolsp").config.features.codelens then vim.lsp.codelens.enable(true, { bufnr = args.buf }) end
+          end,
+        },
+      },
+    },
+    -- mappings to be set up on attaching of a language server
+    mappings = {
+      n = {
+        -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
+        gD = {
+          function() vim.lsp.buf.declaration() end,
+          desc = "Declaration of current symbol",
+          cond = "textDocument/declaration",
+        },
+        ["<Leader>uY"] = {
+          function() require("astrolsp.toggles").buffer_semantic_tokens() end,
+          desc = "Toggle LSP semantic highlight (buffer)",
+          cond = function(client)
+            return client:supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
+          end,
+        },
+      },
+    },
+    -- A custom `on_attach` function to be run after the default `on_attach` function
+    -- takes two parameters `client` and `bufnr`  (`:h lsp-attach`)
+    on_attach = function(client, bufnr)
+      -- this would disable semanticTokensProvider for all clients
+      -- client.server_capabilities.semanticTokensProvider = nil
+    end,
+  },
 }
