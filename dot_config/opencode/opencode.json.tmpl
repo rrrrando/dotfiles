@@ -5,7 +5,48 @@
   "agent": {
     "plan": {
       "temperature": 0.2
-   },
+    },
+    "coder": {
+      "description": "Writes code based on the provided requirements and specifications",
+      "mode": "subagent",
+      "model": "github-copilot/claude-opus-4.7",
+      "prompt": "You are a skilled software developer. Write clean, efficient, and maintainable code based on the given requirements. Follow best practices and coding standards. Be concise and clear in your implementation.",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "bash": "allow",
+        "lsp": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "skill": "allow",
+        "list": "allow"
+      }
+    },
+    "tester": {
+      "description": "Writes tests to ensure code quality and reliability",
+      "mode": "subagent",
+      "model": "github-copilot/claude-opus-4.7",
+      "prompt": "You are a meticulous tester. Write comprehensive tests to validate the functionality, performance, and security of the code. Focus on edge cases and potential failure points. Be thorough and precise in your test cases.",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "bash": "allow",
+        "lsp": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "skill": "allow",
+        "list": "allow"
+      }
+    },
+    "code-reviewer": {
+      "description": "Reviews code for best practices and potential issues",
+      "mode": "subagent",
+      "model": "github-copilot/gpt-5.2",
+      "prompt": "You are a code reviewer. Focus on security, performance, and maintainability. Provide constructive feedback and suggestions for improvement. Be concise and specific in your comments.",
+      "permission": {
+        "edit": "deny"
+      }
+    }
   },
   "mcp": {
     "context7": {

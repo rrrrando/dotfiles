@@ -16,7 +16,6 @@ return {
   { import = "astrocommunity.pack.blade" },
   { import = "astrocommunity.color.twilight-nvim" },
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
-  { import = "astrocommunity.ai.opencode-nvim" },
   { import = "astrocommunity.markdown-and-latex.markview-nvim" },
   { import = "astrocommunity.editing-support.nvim-treesitter-context" },
   { import = "astrocommunity.recipes.ai" },
